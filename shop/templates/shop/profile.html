@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+    <header>
+        {% include 'components/_nav.html' %}
+    </header>
+{% endblock header %}
+
+
+{% block content %}
+<h1 class="text-center">Профиль</h1>
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-7">
+            {%  if customer.photo %}
+            <div>
+                <img style="width:300px; height:300px" src="{{ customer.photo.url }}" alt="">
+            </div>
+            {% endif %}
+
+            <div>
+                <span style="font-size:20px; font-weight:bold">Имя пользователя: </span>
+                <p>{{ customer.username }}</p>
+            </div>
+            <div>
+                <span style="font-size:20px; font-weight:bold">Имя: </span>
+                <p>{{ customer.first_name }}</p>
+            </div>
+            <div>
+                <span style="font-size:20px; font-weight:bold">Фамилия: </span>
+                <p>{{ customer.last_name }}</p>
+            </div>
+            <div>
+                <span style="font-size:20px; font-weight:bold">Адрес: </span>
+                <p>{{ customer.address }}</p>
+            </div>
+            <div>
+                <span style="font-size:20px; font-weight:bold">Валюта: </span>
+                <p>{{ customer.currency }}</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <div>
+                <a href="{% url 'update_profile' pk=customer.pk %}" style="width:200px; height: 50px" class="btn btn-success">Изменить профиль</a>
+            </div>
+            <div>
+                <a href="" style="width:200px; height: 50px" class="btn btn-primary">История заказов</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+

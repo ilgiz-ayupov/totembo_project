@@ -1,0 +1,1 @@
+web: gunicorn TOTEMBO.wsgi --log-file -

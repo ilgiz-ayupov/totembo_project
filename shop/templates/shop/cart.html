@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+    <header>
+        {% include 'components/_nav.html' %}
+    </header>
+{% endblock header %}
+
+{% block content %}
+<main class="cart_block">
+    <h1 class="cart_block__title text-center">SHOPPING CART</h1>
+    <div class="container">
+        <div class="row justify-content-between mb-5">
+            <div class="col-md-7">
+                <table class="product_table table">
+                    <thead>
+                    <tr class="product_table__headers">
+                        <th scope="col">PRODUCT</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">QUANTITY</th>
+                        <th scope="col">TOTAL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in cart.products.all %}
+                            <tr class="product_table__item">
+                                <td class="text-center">
+                                    <img style="width:180px; height:180px" src="{{ product.content_object.photo.url }}" alt="">
+                                    <h3>{{ product.content_object.title }}</h3>
+                                    <p>{{ product.content_object.description }}</p>
+                                </td>
+                                <td>{{ product.content_object.price }}</td>
+
+                                <td>
+                                    <form action="{% url 'change_qty' ct_model=product.content_object.get_ct_model pk=product.content_object.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="number" class="form-control" name="qty" style="width: 73.5%" min="1"
+                                            value="{{ product.quantity }}">
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Изменить кол-во</button>
+                                    </form>
+                                    <a href="{% url 'delete_product' ct_model=product.content_object.get_ct_model pk=product.content_object.pk %}" class="btn btn-danger">Удалить</a>
+                                </td>
+
+                                <td>{{ product.final_price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h5>Общее количество товаров: {{ cart.total_products }}</h5>
+                <h5>Общея стоимость корзины: {{ cart.total_price }}</h5>
+            </div>
+            <div class="col-md-4">
+                <h3 class="text-center">Форма заказа</h3>
+                <form action="{% url 'make_order' %}" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-warning">Сделать заказ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

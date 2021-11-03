@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<header class="mb-0">
+    <!-- HEADER NAV START -->
+    {% include 'components/_nav.html' %}
+    <!-- HEADER NAV END -->
+</header>
+{% endblock header %}
+
+{% block content %}
+<main>
+    <!-- SALES BLOCK START -->
+    <div class="sales_block">
+        <div class="d-flex text-center">
+            <div class="sales_block-first w-50">
+                <p>GET <span>20% OFF</span> FOR $200 AND MORE ORDER</p>
+            </div>
+            <div class="sales_block-second w-50">
+                <p>FREE DELIVERY WORLDWIDE</p>
+            </div>
+        </div>
+    </div>
+    <!-- SALES BLOCK END -->
+
+    <section class="category_products">
+        <!-- PRODUCTS FILTER START -->
+        <div class="products_filter">
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="dropdown pt-2 pt-lx-0">
+                        <button class="products_filter-dropdown dropdown-toggle" type="button" id="dropdownColor"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Color
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownColor">
+                            <li><a class="dropdown-item" href="#">Rose gold</a></li>
+                            <li><a class="dropdown-item" href="#">Gold</a></li>
+                            <li><a class="dropdown-item" href="#">Wave silver</a></li>
+                            <li><a class="dropdown-item" href="#">Black night</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown pt-2 pt-lx-0">
+                        <button class="products_filter-dropdown dropdown-toggle" type="button"
+                                id="dropdownStrapType" data-bs-toggle="dropdown" aria-expanded="false">
+                            Strap type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownStrapType">
+                            <li><a class="dropdown-item" href="#">Metal</a></li>
+                            <li><a class="dropdown-item" href="#">Leather</a></li>
+                            <li><a class="dropdown-item" href="#">Rubber</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown pt-2 pt-lx-0">
+                        <button class="products_filter-dropdown dropdown-toggle" type="button" id="dropdownSort"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Sort by
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownSort">
+                            <li><a class="dropdown-item" href="#">Whats's New</a></li>
+                            <li><a class="dropdown-item" href="#">Price low to high</a></li>
+                            <li><a class="dropdown-item" href="#">Price high to low </a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown pt-2 pt-lx-0">
+                        <button class="products_filter-dropdown dropdown-toggle" type="button"
+                                id="dropdownWatchType" data-bs-toggle="dropdown" aria-expanded="false">
+                            Watch type
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownWatchType">
+                            <li><a class="dropdown-item" href="#">Quartz watches</a></li>
+                            <li><a class="dropdown-item" href="#">Automatic watches</a></li>
+                            <li><a class="dropdown-item" href="#">Smart watches</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCTS FILTER END -->
+
+        <!-- PRODUCTS BLOCK START -->
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="product_card text-center">
+                        <div class="product_card-basket">
+                            <a href="#" class="product_card_basket-link basket_icon">
+                                <svg width="20" height="18" viewBox="0 0 20 18" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            d="M10 3.42445C10.1556 3.42445 10.3022 3.35205 10.3969 3.2286C10.3969 3.22853 10.397 3.22847 10.397 3.2284L10.3972 3.22815L10.4006 3.22378L10.4168 3.20326C10.4318 3.18451 10.4549 3.15589 10.4858 3.11882C10.5476 3.04462 10.6402 2.93682 10.7604 2.80662C11.0013 2.5456 11.3498 2.19785 11.7789 1.85114C12.6505 1.14689 13.7893 0.5 15 0.5C17.5018 0.5 19.5 2.45298 19.5 4.82534C19.5 5.82642 19.2983 7.54989 18.0555 9.65158C16.8108 11.7565 14.5058 14.2679 10.2563 16.8148C10.1799 16.86 10.0912 16.8844 10 16.8844C9.90878 16.8844 9.82009 16.86 9.74371 16.8148C5.49418 14.2679 3.18917 11.7565 1.94451 9.65158C0.701742 7.54989 0.5 5.82642 0.5 4.82534C0.5 2.45298 2.4982 0.5 5 0.5C6.21069 0.5 7.34951 1.14689 8.22114 1.85114C8.65025 2.19785 8.99868 2.5456 9.23959 2.80662C9.35976 2.93682 9.45243 3.04462 9.51424 3.11882C9.54512 3.15589 9.56825 3.18451 9.58319 3.20326L9.5994 3.22378L9.6028 3.22815L9.60299 3.2284C9.60305 3.22847 9.6031 3.22853 9.60315 3.2286L9.60323 3.2287C9.69785 3.35209 9.84449 3.42445 10 3.42445Z"
+                                            stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <a href="product_detail.html" class="product_card-detail">
+                            <div class="w-100">
+                                <img class="product_card-img img-fluid" src="{{ product.photo.url }}"
+                                     alt="">
+                            </div>
+                            <div class="product_card-description">
+                                <p class="product_card-name">{{ product.title }}</p>
+                                <p class="product_card-desc">{{ product.description }}</p>
+                                <p class="product_card-price">${{ product.price }}</p>
+                            </div>
+                        </a>
+                        <a href="" class="product_card-btn">BUY</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- PRODUCTS BLOCK END -->
+
+        <!-- PAGINATION START -->
+        <div class="container">
+            <nav aria-label="pagination">
+                <div class="row justify-content-center">
+                    <ul class="pagination d-flex align-items-center">
+                        <li class="page-item"><a class="page-link" href="#">
+                            <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.00168896 4.50706C0.00136328 4.657 0.0594578 4.80231 0.16589 4.91777L3.73547 8.76817C3.85665 8.89922 4.03079 8.98164 4.21956 8.99728C4.40834 9.01293 4.5963 8.96052 4.7421 8.8516C4.88789 8.74267 4.97957 8.58614 4.99698 8.41645C5.01438 8.24676 4.95608 8.07781 4.83491 7.94675L1.63656 4.50706L4.72068 1.06736C4.77998 1.00172 4.82427 0.926192 4.85099 0.845117C4.87771 0.76404 4.88635 0.679017 4.87639 0.594932C4.86644 0.510846 4.8381 0.429357 4.793 0.355148C4.7479 0.280941 4.68693 0.215477 4.61359 0.162519C4.54019 0.103749 4.45407 0.0592394 4.36063 0.0317774C4.2672 0.00431633 4.16847 -0.00550461 4.07062 0.00292969C3.97276 0.011364 3.8779 0.0378714 3.79198 0.0807934C3.70605 0.123714 3.63092 0.182124 3.57127 0.252362L0.123055 4.10277C0.0334468 4.22154 -0.0092845 4.36389 0.00168896 4.50706Z"
+                                      fill="#303030"/>
+                            </svg>
+                        </a></li>
+                        <li class="page-item"><a class="page-link page-link-active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">12</a></li>
+                        <li class="page-item"><a class="page-link" href="#">
+                            <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.99831 4.50706C4.99864 4.657 4.94054 4.80231 4.83411 4.91777L1.26453 8.76817C1.14335 8.89922 0.969215 8.98164 0.780437 8.99728C0.591658 9.01293 0.403697 8.96052 0.257904 8.8516C0.11211 8.74267 0.020426 8.58614 0.00302095 8.41645C-0.0143841 8.24676 0.0439153 8.07781 0.165095 7.94675L3.36344 4.50706L0.279322 1.06736C0.22002 1.00172 0.175734 0.926192 0.149011 0.845117C0.122288 0.76404 0.113654 0.679017 0.123605 0.594932C0.133557 0.510846 0.161897 0.429357 0.206998 0.355148C0.252099 0.280941 0.313071 0.215477 0.386409 0.162519C0.459815 0.103749 0.545932 0.0592394 0.639365 0.0317774C0.732798 0.00431633 0.831533 -0.00550461 0.929385 0.00292969C1.02724 0.011364 1.1221 0.0378714 1.20802 0.0807934C1.29395 0.123714 1.36908 0.182124 1.42873 0.252362L4.87695 4.10277C4.96655 4.22154 5.00928 4.36389 4.99831 4.50706Z"
+                                      fill="#303030"/>
+                            </svg>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- PAGINATION END -->
+    </section>
+</main>
+{% endblock content %}
